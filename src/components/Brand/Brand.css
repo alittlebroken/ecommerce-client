@@ -7,6 +7,11 @@
     font-weight: bold;
 }
 
+#brand a {
+    text-decoration: none;
+    color: rgb(228, 184, 12);
+}
+
 @media only screen and (max-width: 600px) {
     #brand {
         font-size: 2rem;
