@@ -1,8 +1,8 @@
 import React from 'react';
 import './Brand.css';
 
-const Brand = () => {
-    return <div id="brand">Agora</div>;
+const Brand = (props) => {
+    return <div id="brand">{props.appName}</div>;
 };
 
 export default Brand;
