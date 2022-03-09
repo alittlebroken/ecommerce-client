@@ -79,26 +79,6 @@ describe('<Search />', () => {
 
     });
 
-    it('should dispatch an action when search button is clicked', async () => {
-
-      // Setup the dispatch mocks
-      const dummyDispatch = jest.fn();
-      useDispatchMock.mockReturnValue(dummyDispatch);
-
-      // sanity check
-      expect(dummyDispatch).not.toHaveBeenCalled();
-
-      // Render the component
-      render(<Provider store={store}><Search /></Provider>);
-
-      // Simulate a click on the search button
-      userEvent.click(screen.getByRole('button'));
-
-      // The dispatch button should have been called at least once
-      expect(dummyDispatch).toHaveBeenCalledTimes(1);
-
-    });
-
     it('should dispatch an action when the search box is typed in', async () => {
 
         // Dispatch mock test
