@@ -2,6 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import App from './App';
 
+// Import packages we are testing for
+const Brand = require('../Brand/Brand');
+const Search = require('../Search/Search');
+
 describe('<App />', () => {
 
     it('renders the main site container', () => {
@@ -19,7 +23,7 @@ describe('<App />', () => {
             const wrap = shallow(<App />);
     
             //Does the header tag exist
-            expect(wrap.exists('#app-header')).toEqual(true);
+            expect(wrap.exists('.app-header')).toEqual(true);
         });
 
         it('contains <Brand /> component', () => {
@@ -38,7 +42,7 @@ describe('<App />', () => {
             const wrap = shallow(<App />);
 
             // Check the desired component exists
-            expect(wrap.find(<Search />)).toEqual(true);
+            expect(wrap.find('.search-form')).toEqual(true);
 
         });
 
@@ -63,16 +67,6 @@ describe('<App />', () => {
         });
 
     });
-
-    it('contains the <Categories /> component', () => {
-
-        // Wrap the component we are testing
-        const wrap = shallow(<App />);
-
-        // Check for the desired component
-        expect(wrap.find(<Categories />)).toEqual(true);
-
-    })
 
     describe('Main', () => {
 
