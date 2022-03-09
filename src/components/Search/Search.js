@@ -28,6 +28,12 @@ const Search = () => {
 
     };
 
+    // Handle change of the input
+    const handleInputChange = (e) =>  {
+        e.preventDefault();
+        dispatch(setSearchTerm(e.target.value));
+    };
+
     // Display the search boxes
     return (
         <Form name="search" id="search" className="search-form">
@@ -37,9 +43,7 @@ const Search = () => {
             name="searchInput"
             id="SearchInput"
             value={terms ? terms : ''}
-            onChange={(e) => {
-                dispatch(setSearchTerm(e.target.value));
-            }}
+            onChange={handleInputChange}
             />
 
             
