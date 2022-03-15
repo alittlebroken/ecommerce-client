@@ -1,21 +1,38 @@
+// React packages
 import React from 'react';
-import { shallow } from 'enzyme';
+import * as reactRedux from 'react-redux';
+
+// Testing Packages
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+
+// Import testing utils
+import{ render, screen } from '../../utils/test.util';
+
+// Component to test
 import Brand from './Brand';
 
 describe('<Brand />', () => {
-    it('renders the component', () => {
-        // wrap the component we are testing
-        const wrap = shallow(<Brand />);
 
-        // Check the component
-        expect(wrap.exists('#brand')).toEqual(true);
+    it('displays the brand name', () => {
+        
+        // Name of the site to display in the brand
+        const siteName = 'The VegPalace';
+
+        // Render the component
+        render(<Brand appName={siteName}/>);
+
+        // Check the site name is listed
+        expect(screen.getByText(siteName)).toBeInTheDocument();
+
     });
 
-    it('contains the brand name', () => {
-        // Wrap the component being tested
-        const wrap = shallow(<Brand />);
+    it('contains a link back to the home page', () => {
+        
+        // Render the component
+        render(<Brand appName="The Hive" />);
 
-        // check for the existance of the brand name
-        expect(wrap.find('#brand').text()).toEqual('Agora');
+        expect(screen.getByRole('link', { name: 'The Hive'})).toHaveAttribute('href', '/');
+
     })
 })
