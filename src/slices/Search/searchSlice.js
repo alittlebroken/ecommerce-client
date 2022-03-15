@@ -8,7 +8,7 @@ export const performSearch = createAsyncThunk('search/performSearch',
     const state = thunkAPI.getState();
 
     // Extract out the relevant state data we need
-    const searchTerm = state.search.term;
+    const searchTerm = state.search.searchTerm;
     const searchCat = state.search.category;
 
     // Set any options for the fetch statement
@@ -48,14 +48,14 @@ export const searchSlice = createSlice({
     name: 'search',
     initialState: {
         results: [],
-        term: '',
+        searchTerm: '',
         category: 0,
         isLoading: false,
         hasError: false
     },
     reducers: {
         setSearchTerm: (state, action) => {
-            state.term = action.payload;
+            state.searchTerm = action.payload;
         },
         setSearchCategory: (state, action) => {
             state.category = action.payload;
@@ -84,11 +84,11 @@ export const searchSlice = createSlice({
 });
 
 // Selectors
-export const selectSearchResults = state => state.search.results;
-export const selectSearchCategory = state => state.search.category;
-export const selectSearchTerms = state => state.search.term;
-export const selectIsLoading = state => state.search.isLoading;
-export const selectHasError = state => state.search.hasError;
+export const selectSearchResults = state => state.search?.results;
+export const selectSearchCategory = state => state.search?.category;
+export const selectSearchTerms = state => state.search?.searchTerm;
+export const selectIsLoading = state => state.search?.isLoading;
+export const selectHasError = state => state.search?.hasError;
 
 // actions
 export const { setSearchTerm, setSearchCategory } = searchSlice.actions;
