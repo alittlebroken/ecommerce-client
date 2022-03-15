@@ -1,18 +1,50 @@
-.app-header {
 
-  display: grid;
-  grid-template-columns: 150px minmax(300px, 1fr) 50px 50px;
-  grid-template-rows: 54px;
-  background-color: rgb(58, 57, 57);
-
-  width: 100vw;
-  height: 56px;
-
+.border-red {
+  border: 1px solid red;
 }
 
-@media only screen and (max-width: 600px) {
-  .app-header {
-    grid-template-columns: 1fr;
-    padding: 1px 0px;
+.app-header {
+  width: 100vw;
+  background-color: black;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.hamburger {
+  display: none;
+  grid-area: hamburger;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+.navbar-grid {
+  display: grid;
+  grid-template-areas: "hamburger brand search navmenu";
+  grid-template-rows: 54px;
+  grid-template-columns: 0px 150px auto auto;
+}
+
+@media only screen and (max-width: 650px) {
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
   }
+
+  .navbar-grid {
+    grid-template-areas: "brand hamburger"
+                         "search search";
+    grid-template-rows: 54px;
+    grid-template-columns: calc(100% - 45px) 45px;
+  }
+
 } 
