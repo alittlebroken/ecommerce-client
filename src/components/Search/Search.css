@@ -1,12 +1,13 @@
 .search-form {
-    width: 100%;
     display: grid;
+    grid-area: search;
     grid-template-columns: auto 100px;
-
+    width: auto;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
     .search-form {
         grid-template-columns: auto 100px;
+        width: 100vw;
     }
 }
