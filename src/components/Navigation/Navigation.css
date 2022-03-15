@@ -1,0 +1,80 @@
+  
+  .navmenu {
+    display: grid;
+    grid-template-columns: repeat( 3, 1fr);
+    grid-area: navmenu;
+  }
+  
+  .navitem {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .navitem:hover {
+    background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  
+    color:black;
+  }
+  
+  .navmenu.active {
+    left: 0;
+  }
+  
+  .hamburger {
+    display: none;
+    grid-area: hamburger;
+  }
+  
+  .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: #fff;
+  }
+  
+  @media only screen and (max-width: 650px) {
+  
+    .navbar-grid > span {
+      display: grid;
+      justify-content: center;
+    }
+  
+    .navmenu {
+      position: fixed;
+      grid-template-columns: 1fr;
+      left: -100%;
+      top: 108px;
+      background-color: #fff;
+      width: 200px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+  
+    .navitem {
+      color: black;
+      height: 50px;
+      border-bottom: 1px solid #E2E8F0;
+      text-decoration: none;
+    }
+  
+    .navitem:hover {
+      background-color: #E2E8F0;
+    }
+  
+    .hamburger {
+      display: block;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+    }
+  
+  } 
