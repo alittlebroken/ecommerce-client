@@ -1,0 +1,95 @@
+.loginForm-wrapper {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm-container {
+    display: grid;
+    grid-template-areas:    "login-image login-title"
+                            "login-image login-group";
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    border-radius: 15px;
+}
+
+.login-image {
+    grid-area: login-image;
+    width: 250px;
+}
+
+.login-image img {
+    width: 250px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.login-group {
+    display: grid;
+    grid-area: login-group;
+    width: 400px;
+    padding: 10px;
+    grid-gap: 10px;
+}
+
+.login-title {
+    grid-area: login-title;
+}
+
+.login-title h2 {
+    text-align: center;
+}
+
+.login-group button {
+    width: 150px;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: orange;
+    font-weight: bold;
+}
+
+.login-button-group {
+    display: flex;
+    justify-content: space-around;
+}
+
+.login-group input {
+    outline: none;
+    padding: 5px;
+}
+
+.button-link {
+    width: 150px;
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: orange;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.button-link:hover {
+    color: black;
+}
+
+.login-error {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 650px) {
+
+    .loginForm-container {
+        width: 300px;
+    }
+  
+  } 
