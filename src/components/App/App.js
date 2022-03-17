@@ -1,14 +1,33 @@
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+
+import {
+  selectAuthenticated,
+  selectToken
+} from '../../slices/Auth/authSlice';
 
 import './App.css';
 
 import Brand from '../Brand/Brand';
 import Search from '../Search/Search';
 import Navigation from '../Navigation/Navigation';
+import Login from '../Login/Login';
 
 const App = () => {
 
+  // generate a navigation alias for redirecting around routes
+  const navigate = useNavigate();
+
+  // Alias the dispatch 
+  const dispatch = useDispatch();
+
   let authToken = JSON.parse(localStorage.getItem('token'));
+
+  useEffect(() => {
+    authToken = JSON.parse(localStorage.getItem('token'));
+  }, [dispatch]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
@@ -57,7 +76,7 @@ const App = () => {
           <Route path="/products" element="Products"></Route>
           <Route path="/product"></Route>
           <Route path="/profile"></Route>
-          <Route path="/login"></Route>
+          <Route path="/login" element={<Login token={authToken} />}></Route>
           <Route path="/logout"></Route>
           <Route path="/register"></Route>
           <Route path="/cart"></Route>
