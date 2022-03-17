@@ -9,29 +9,8 @@ import '@testing-library/jest-dom';
 import configureStore from 'redux-mock-store';
 import userEvent from '@testing-library/user-event';
 
-
 // Component Packages
 import Search from './Search';
-
-// Sample data
-const mockedProducts = [
-    {
-        product_id: 1,
-        name: 'Chicken breasts',
-        description: '1kg of free range chicken breasts',
-        price: 5.76,
-        image_url: '',
-        in_stock: true
-    },
-    {
-        product_id: 2,
-        name: 'Vegan Life Cheese Slices',
-        description: '12 slices of the most succulent mock cheddar cheese',
-        price: 2.50,
-        image_url: '',
-        in_stock: false
-    },
-];
 
 describe('<Search />', () => {
 
