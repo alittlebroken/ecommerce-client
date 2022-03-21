@@ -6,8 +6,7 @@ import {
     performLogin,
     selectHasError,
     selectErrorMessage,
-    selectAuthenticated,
-    selectToken } from '../../slices/Auth/authSlice';
+    selectAuthenticated } from '../../slices/Auth/authSlice';
 
 import './Login.css';
 
@@ -25,15 +24,14 @@ const Login = () => {
 
     // gather data from the auth store
     const hasError = useSelector(selectHasError);
-    const authenticated = useSelector(selectAuthenticated);
     const errorMessage = useSelector(selectErrorMessage);
+    const authenticated = useSelector(selectAuthenticated);
 
-        // update the component when a value changes
-        useEffect(() => {
-            if(authenticated){
-                navigate("/");
-            }
-        }, [authenticated]);
+    useEffect(() => {
+        if(authenticated){
+            return navigate('/');
+        }
+    }, [authenticated, navigate, dispatch]);
 
     // deals with changes in the username field
     const handleUsernameChange = (e) => {
@@ -66,15 +64,9 @@ const Login = () => {
         // dispatch the action
         dispatch(performLogin(payload));
 
-        if(authenticated){
-            navigate("/");
-        }
-        
     };
 
     return (
-
-
 
         <div className="loginForm-wrapper" role="presentation">
 
