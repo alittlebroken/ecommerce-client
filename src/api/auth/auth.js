@@ -16,3 +16,20 @@ export const loginUser = async (credentials) => {
         throw err;
     }
 };
+
+// Logout a user
+export const logoutUser = async (credentials) => {
+    try{
+
+        // destroy the localStorage Icon
+        localStorage.removeItem('token');
+
+        return {
+            status: 'OK',
+            message: 'Logged out successfully.'
+        }
+
+    } catch(error) {
+        throw error;
+    }
+};
