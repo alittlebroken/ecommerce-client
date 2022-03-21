@@ -90,6 +90,34 @@
 
     .loginForm-container {
         width: 300px;
+        grid-template-areas:    "login-image login-title"
+                            "login-image login-group";
+
+        grid-template-areas: "login-image"
+                             "login-title"
+                             "login-group";
     }
-  
+    
+    .login-image img {
+        display: none;
+    }
+
+    .login-group {
+        display: grid;
+        grid-area: login-group;
+        width: 300px;
+        padding: 10px;
+        grid-gap: 10px;
+    }
+
+    .login-button-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+
+    .login-group button, .button-link {
+        width: 100%;
+    }
+
   } 
