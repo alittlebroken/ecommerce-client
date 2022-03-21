@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 
 import {
   selectAuthenticated,
-  selectToken
+  selectToken,
+  performLogout,
+  setIsAuthenticated
 } from '../../slices/Auth/authSlice';
 
 import './App.css';
@@ -23,11 +25,14 @@ const App = () => {
   // Alias the dispatch 
   const dispatch = useDispatch();
 
+  // Are we authenticated
+  const authenticated = useSelector(selectAuthenticated);
+
   let authToken = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
     authToken = JSON.parse(localStorage.getItem('token'));
-  }, [dispatch]);
+  }, [authenticated]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
@@ -39,6 +44,15 @@ const App = () => {
     navMenu.classList.toggle("active");
 
   }
+
+  // Handles logout of the user
+  const handleUserLogout = (e) => {
+
+    dispatch(performLogout({}));
+    dispatch(setIsAuthenticated(false));
+    navigate('/login');
+
+  };
 
   return (
     <div name="app-container">
@@ -62,7 +76,7 @@ const App = () => {
 
           <Search />
 
-          <Navigation authenticated={authToken} />
+          <Navigation authenticated={authenticated} handleLogout={handleUserLogout}/>
 
         </nav>
 
