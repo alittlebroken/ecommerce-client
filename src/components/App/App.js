@@ -16,6 +16,7 @@ import Brand from '../Brand/Brand';
 import Search from '../Search/Search';
 import Navigation from '../Navigation/Navigation';
 import Login from '../Login/Login';
+import Registration from '../Registration/Registration';
 
 const App = () => {
 
@@ -92,7 +93,7 @@ const App = () => {
           <Route path="/profile"></Route>
           <Route path="/login" element={<Login token={authToken} />}></Route>
           <Route path="/logout"></Route>
-          <Route path="/register"></Route>
+          <Route path="/register" element={<Registration />}></Route>
           <Route path="/cart"></Route>
 
         </Routes>
