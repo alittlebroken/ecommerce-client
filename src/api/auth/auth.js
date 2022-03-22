@@ -7,12 +7,19 @@ export const loginUser = async (credentials) => {
     try{
         
         // Attempt to login to the API
-        const response = await axios.post(`${BASE_URL}/auth/login`, credentials);
-        
-        return response;
+        return await axios.post(`${BASE_URL}/auth/login`, credentials);
        
     } catch(error) {
-        const err = new Error(error.response.data.message);
+        
+        let errorMessage;
+
+        if(error?.response?.data?.message){
+            errorMessage = error?.response?.data?.message;
+        } else {
+            errorMessage = 'There was an unspecified error.'
+        }
+
+        const err = new Error(errorMessage);
         throw err;
     }
 };
@@ -32,4 +39,28 @@ export const logoutUser = async (credentials) => {
     } catch(error) {
         throw error;
     }
+};
+
+// register a new user
+export const registerUser = async (credentials) => {
+
+    try{
+
+        // send the registration deatials across to the API
+        const response = await axios.post(`${BASE_URL}/auth/register`, credentials);
+        return response;
+
+    } catch(error) {
+        let errorMessage;
+
+        if(error?.response?.data?.message){
+            errorMessage = error?.response?.data?.message;
+        } else {
+            errorMessage = 'There was an unspecified error.'
+        }
+
+        const err = new Error(errorMessage);
+        throw err;
+    }
+
 };
