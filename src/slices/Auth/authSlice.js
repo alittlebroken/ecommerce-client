@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginUser, logoutUser } from '../../api/auth/auth';
+import { loginUser, registerUser } from '../../api/auth/auth';
 
 // Login thunk
 export const performLogin = createAsyncThunk(
@@ -30,6 +30,40 @@ export const performLogin = createAsyncThunk(
 export const performLogout = createAsyncThunk(
     'auth/performLogout',
     async (credentials, thunkAPI) => {
+
+    }
+);
+
+// Registration thunk
+export const registerAccount = createAsyncThunk(
+    'auth/registerAccount',
+    async(credentials, thunkAPI) => {
+
+        try{
+
+            // Extract the credentials
+            const { email, password } = credentials;
+
+            const response = await registerUser({
+                email: email,
+                password: password
+            });
+
+            // Do we have any error
+            if(response.name === 'Error') {
+                const err = new Error(response);
+                throw err;
+            }
+
+            return {
+                status: 'OK',
+                message: 'User account created successfully.'
+            }
+
+        } catch(error) {
+            throw error;
+        }
+
 
     }
 );
@@ -102,6 +136,22 @@ const authStore = createSlice({
             // clean up the state
             state.isAuthenticated = false;
             state.accessToken = '';
+            state.redirectUrl = '/login';
+        },
+        [registerAccount.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasErorr = false;
+        },
+        [registerAccount.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+
+            state.errorMessage = action.error.message;
+        },
+        [registerAccount.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+            state.errorMessage = '';
             state.redirectUrl = '/login';
         },
     }
