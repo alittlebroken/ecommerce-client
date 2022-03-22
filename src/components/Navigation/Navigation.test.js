@@ -39,7 +39,7 @@ describe('<Navigation />', () => {
         // Check the component features
         expect(screen.getByRole('link', { name: 'Profile'})).toHaveAttribute('href', '/profile');
         expect(screen.getByRole('link', { name: 'Cart'})).toHaveAttribute('href', '/cart');
-        expect(screen.getByRole('link', { name: 'Logout'})).toHaveAttribute('href', '/logout');
+        expect(screen.getByRole('link', { name: 'Logout'})).toHaveAttribute('href', '/login');
     });
 
 });
