@@ -6,7 +6,6 @@
 .app-header {
   width: 100vw;
   background-color: black;
-  border-bottom: 1px solid #E2E8F0;
 }
 
 .hamburger {
@@ -29,6 +28,14 @@
   grid-template-areas: "hamburger brand search navmenu";
   grid-template-rows: 54px;
   grid-template-columns: 0px 150px auto auto;
+}
+
+/* Common Styling */
+.button {
+  background-color: orange;
+  width: 150px;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 650px) {

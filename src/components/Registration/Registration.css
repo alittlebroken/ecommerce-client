@@ -1,0 +1,124 @@
+.registration-wrapper {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-container {
+    display: grid;
+    grid-template-areas:    "registration-image registration-title"
+                            "registration-image registration-group"
+                            "error error";
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    border-radius: 15px;
+}
+
+.registration-image {
+    grid-area: registration-image;
+    width: 250px;
+}
+
+.registration-image img {
+    width: 250px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.registration-group {
+    display: grid;
+    grid-area: registration-group;
+    width: 400px;
+    padding: 10px;
+    grid-gap: 10px;
+}
+
+.registration-title {
+    grid-area: registration-title;
+}
+
+.registration-title h2 {
+    text-align: center;
+}
+
+.registration-group button {
+    width: 150px;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: orange;
+    font-weight: bold;
+}
+
+.registration-button-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.registration-group input {
+    outline: none;
+    padding: 5px;
+}
+
+.button-link {
+    width: 150px;
+    border: 0px;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: orange;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.button-link:hover {
+    color: black;
+}
+
+.registration-error {
+    display: grid;
+    grid-area: error;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 650px) {
+
+    .registration-container {
+        width: 300px;
+        
+        grid-template-areas: "registration-image"
+                             "registration-title"
+                             "registration-group";
+    }
+    
+    .registration-image img {
+        display: none;
+    }
+
+    .registration-group {
+        display: grid;
+        grid-area: registration-group;
+        width: 300px;
+        padding: 10px;
+        grid-gap: 10px;
+    }
+
+    .registration-button-group {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 10px;
+    }
+
+    .registration-group button, .button-link {
+        width: 100%;
+    }
+
+  } 

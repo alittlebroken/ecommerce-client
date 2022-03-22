@@ -48,7 +48,7 @@ export const searchSlice = createSlice({
     name: 'search',
     initialState: {
         results: [],
-        searchTerm: '',
+        searchTerm: localStorage.getItem('searchTerms'),
         category: 0,
         isLoading: false,
         hasError: false
