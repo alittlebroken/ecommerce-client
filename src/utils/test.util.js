@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import { render} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 
 // Crester the intial state for the store
@@ -36,4 +36,4 @@ const customRender = (ui, options) => {
 }
 
 export * from '@testing-library/react';
-export {customRender as render};
+export {customRender as render };
