@@ -10,6 +10,13 @@ import {
   setIsAuthenticated
 } from '../../slices/Auth/authSlice';
 
+// Search related methods
+import { 
+  performSearch,
+  selectSearchResults,
+  selectSearchTerms
+} from '../../slices/Search/searchSlice';
+
 import './App.css';
 
 import Brand from '../Brand/Brand';
@@ -17,6 +24,7 @@ import Search from '../Search/Search';
 import Navigation from '../Navigation/Navigation';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
+import ProductsList from '../ProductsList/ProductsList';
 
 const App = () => {
 
@@ -31,9 +39,23 @@ const App = () => {
 
   let authToken = JSON.parse(localStorage.getItem('token'));
 
+  // Get search terms and serarch results
+  const searchTerm = useSelector(selectSearchTerms);
+  const searchResults = useSelector(selectSearchResults);
+
   useEffect(() => {
     authToken = JSON.parse(localStorage.getItem('token'));
   }, [authenticated]);
+
+  // Get a list of products each time the a new search term is set
+  useEffect(() => {
+
+    // Dispatch the perform search action
+    dispatch(performSearch({
+      searchTerms: searchTerm
+    }))
+
+  }, [searchTerm]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
@@ -88,7 +110,7 @@ const App = () => {
         <Routes>
 
           <Route path="/"></Route>
-          <Route path="/products" element="Products"></Route>
+          <Route path="/products" element={<ProductsList searchTerm={searchTerm} searchResults={searchResults} />}></Route>
           <Route path="/product"></Route>
           <Route path="/profile"></Route>
           <Route path="/login" element={<Login token={authToken} />}></Route>
