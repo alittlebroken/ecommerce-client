@@ -17,3 +17,20 @@ export const findProducts = async (payload) => {
     }
 
 };
+
+// Get a product from the backend
+export const findProduct = async(payload) => {
+
+    try {
+
+        // Get a product from the API
+        const response = await axios.get(`${BASE_URL}/products/${payload}`);
+        return JSON.stringify(response);
+
+    } catch (error) {
+
+        throw error;
+
+    }
+
+}
