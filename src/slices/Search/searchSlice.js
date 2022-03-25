@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { findProducts } from '../../api/products/products';
+import { findProduct, findProducts } from '../../api/products/products';
 
 // perform  a search
 export const performSearch = createAsyncThunk('search/performSearch',
@@ -16,6 +16,21 @@ export const performSearch = createAsyncThunk('search/performSearch',
     
   }
 ); 
+
+// Get an individual product from the database
+export const getProduct = createAsyncThunk('search/getProduct',
+  async (payload, thunkAPI) => {
+
+    try {
+
+        return await findProduct(payload);
+
+    } catch(error) {
+        throw error;
+    }
+
+  }
+);
 
 export const searchSlice = createSlice({
     name: 'search',
@@ -50,7 +65,6 @@ export const searchSlice = createSlice({
 
             // parse the action payload
              const results = JSON.parse(action.payload);
-             console.log(results.data)
 
             if(!results?.data){
                 state.results = [];
@@ -63,7 +77,33 @@ export const searchSlice = createSlice({
                 }
             }
             
-        }
+        },
+        [getProduct.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [getProduct.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },
+        [getProduct.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+
+            const results = JSON.parse(action.payload);
+
+            if(!results?.data){
+                state.results = results.message;
+            } else {
+
+                if(results.status === 404){
+                    state.results = results.message;
+                    state.hasError = true;
+                } else {
+                    state.results = results.data;
+                }
+            }
+        },
     }
 });
 
