@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './ProductCard.css';
-import { addToCart } from '../../slices/Cart/cartSlice.js';
+//import { addToCart } from '../../slices/Cart/cartSlice.js';
 
 const ProductCard = (props) => {
 
@@ -18,11 +18,11 @@ const ProductCard = (props) => {
     const dispatch = useDispatch();
 
     // Handle the click on the addToCartButton
-    const handleAddToCartClick = (e) => {
+    const handleAddToCartClick = (e, prodid) => {
         // Stop any inherent default behaviour
         e.preventDefault();
 
-        dispatch(addToCart(product_id));
+        //dispatch(addToCart(prodid));
 
     }; 
 
