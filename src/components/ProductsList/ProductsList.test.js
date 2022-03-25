@@ -1,5 +1,6 @@
 // React packages
 import React from 'react';
+import ReactRouter from 'react-router';
 import * as reactRedux from 'react-redux';
 
 // Testing Packages
@@ -55,8 +56,12 @@ describe('<ProductsList />', () => {
         // The search term we are looking for
         const mockTerm = 'bee';
 
+        useSelectorMock
+         .mockReturnValue(mockTerm)
+         .mockReturnValue(mockResults);
+
         // render the component
-        render(<ProductsList searchTerm={mockTerm} searchResults={mockResults} />);
+        render(<ProductsList />);
 
         // We should have title for the page of products
         expect(screen.getByRole("heading", { level: 3 })).toBeInTheDocument();
