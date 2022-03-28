@@ -18,6 +18,7 @@ import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
 import ProductsList from '../ProductsList/ProductsList';
 import Product from '../Product/Product';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 const App = () => {
 
@@ -91,11 +92,19 @@ const App = () => {
           <Route path="/"></Route>
           <Route path="/products" element={<ProductsList />}></Route>
           <Route path="/products/:product_id" element={<Product />}></Route>
-          <Route path="/profile"></Route>
+          <Route path="/profile" element={
+            <ProtectedRoute token={authToken}>
+              <h1>User Profile</h1>
+            </ProtectedRoute>
+          }></Route>
           <Route path="/login" element={<Login token={authToken} />}></Route>
           <Route path="/logout"></Route>
           <Route path="/register" element={<Registration />}></Route>
-          <Route path="/cart"></Route>
+          <Route path="/cart" element={
+            <ProtectedRoute token={authToken}>
+              <h1>User Cart</h1>
+            </ProtectedRoute>
+          }></Route>
 
         </Routes>
 
