@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_URL;
+import { findProducts, findProduct } from './products.js';
 
-import { findProducts } from './products.js';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 // Mock axios
 jest.mock('axios');
@@ -35,6 +35,16 @@ const mockedProducts = [
     }
 ];
 
+// Mock a singular product result
+const mockProduct = [{
+    product_id: 1,
+    name: 'Mocked Product 1',
+    description: 'Some descriptive text for mocked product 1',
+    price: 2.88,
+    image_url: 'mocked1.png',
+    in_stock: false,
+}];
+
 describe('findProducts', () => {
 
     it('should return some products when passed a search term', async () => {
@@ -49,10 +59,9 @@ describe('findProducts', () => {
 
         // execute the request to the API
         const result = await findProducts(payload);
-
         // Now test the data returned
         expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/search`, payload);
-        expect(result.sort()).toEqual(mockedProducts.sort());
+        expect(JSON.parse(result).sort()).toEqual(mockedProducts.sort());
 
     });
 
@@ -71,7 +80,7 @@ describe('findProducts', () => {
 
         // Now test the data returned
         expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/search`, payload);
-        expect(result.sort()).toEqual(mockedProducts.sort());
+        expect(JSON.parse(result).sort()).toEqual(mockedProducts.sort());
 
     });
 
@@ -85,13 +94,55 @@ describe('findProducts', () => {
             searchTerms: 'lemons'
         };
 
-        // execute the request to the APIw
+        // execute the request to the API
         const result = await findProducts(payload);
 
         // Now test the data returned
         expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/search`, payload);
-        expect(result.sort()).toEqual([].sort());
+        expect(JSON.parse(result)).toEqual([]);
 
+    });
+
+});
+
+describe('findProduct', () => {
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('should return the product identified by the supplied product id', async () => {
+
+        // set the mock axios to return the products on successful API call
+        axios.get.mockResolvedValueOnce(mockProduct);
+    
+        // generate the payload to send to the API
+        const payload = 1;
+    
+        // execute the request to the API
+        const response = await findProduct(payload);
+    
+        // Now test the data returned
+        expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/products/${payload}`);
+        expect(JSON.parse(response).sort()).toEqual(mockProduct.sort());
+    
+    });
+    
+    it('should return an empty array if no products found', async () => {
+    
+        // set the mock axios to return the products on successful API call
+        axios.post.mockResolvedValueOnce([]);
+    
+        // generate the payload to send to the API
+        const payload = 1;
+    
+        // execute the request to the APIw
+        const result = await findProducts(payload);
+    
+        // Now test the data returned
+        expect(axios.post).toHaveBeenCalledWith(`${BASE_URL}/search`, payload);
+        expect(JSON.parse(result)).toEqual([]);
+    
     });
 
 });
