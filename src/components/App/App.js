@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 import {
   selectAuthenticated,
-  selectToken,
   performLogout,
   setIsAuthenticated
 } from '../../slices/Auth/authSlice';
@@ -17,6 +16,8 @@ import Search from '../Search/Search';
 import Navigation from '../Navigation/Navigation';
 import Login from '../Login/Login';
 import Registration from '../Registration/Registration';
+import ProductsList from '../ProductsList/ProductsList';
+import Product from '../Product/Product';
 
 const App = () => {
 
@@ -88,8 +89,8 @@ const App = () => {
         <Routes>
 
           <Route path="/"></Route>
-          <Route path="/products" element="Products"></Route>
-          <Route path="/product"></Route>
+          <Route path="/products" element={<ProductsList />}></Route>
+          <Route path="/products/:product_id" element={<Product />}></Route>
           <Route path="/profile"></Route>
           <Route path="/login" element={<Login token={authToken} />}></Route>
           <Route path="/logout"></Route>

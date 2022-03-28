@@ -1,48 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
+import { findProduct, findProducts } from '../../api/products/products';
+
 // perform  a search
 export const performSearch = createAsyncThunk('search/performSearch',
-  async (searchType, thunkAPI) => {
-
-    // Get the store state
-    const state = thunkAPI.getState();
-
-    // Extract out the relevant state data we need
-    const searchTerm = state.search.searchTerm;
-    const searchCat = state.search.category;
-
-    // Set any options for the fetch statement
-    const fetchOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            searchTerms: searchTerm,
-            category: searchCat,
-        }),
-        redirect: 'follow',
-    };
-
-    // Use this to set the URL we get the posts from
-    let url = `${process.env.REACT_APP_API_URL}/search`;
+  async (payload, thunkAPI) => {
 
     try{
-        
-        // Fetch the data
-        const response = await fetch(url, fetchOptions);
-        // Get the json response data
-        
-        const json = await response.json();
 
-        return json.data;
+        return await findProducts(payload);
+
     } catch(error) {
-        console.log(error);
+        throw error;
     }
     
-
   }
 ); 
+
+// Get an individual product from the database
+export const getProduct = createAsyncThunk('search/getProduct',
+  async (payload, thunkAPI) => {
+
+    try {
+
+        return await findProduct(payload);
+
+    } catch(error) {
+        throw error;
+    }
+
+  }
+);
 
 export const searchSlice = createSlice({
     name: 'search',
@@ -71,15 +59,51 @@ export const searchSlice = createSlice({
             state.hasError = true;
         },
         [performSearch.fulfilled]: (state, action) => {
+
             state.isLoading = false;
             state.hasError = false;
-            if(!action.payload){
+
+            // parse the action payload
+             const results = JSON.parse(action.payload);
+
+            if(!results?.data){
                 state.results = [];
             } else {
-                state.results = action.payload.map(result => result);
+
+                if(results.status === 204){
+                    state.results = [];
+                } else {
+                    state.results = results.data;
+                }
             }
             
-        }
+        },
+        [getProduct.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [getProduct.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },
+        [getProduct.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+
+            const results = JSON.parse(action.payload);
+
+            if(!results?.data){
+                state.results = results.message;
+            } else {
+
+                if(results.status === 404){
+                    state.results = results.message;
+                    state.hasError = true;
+                } else {
+                    state.results = results.data;
+                }
+            }
+        },
     }
 });
 
