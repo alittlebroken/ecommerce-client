@@ -13,51 +13,67 @@ import{ render, screen } from '../../utils/test.util';
 // Components to test
 import Product from './Product';
 
- // generate the mock data we would usually pass to the card
- const mockProductData = {
-    product_id: 17630,
-    name: 'West Devonshire Queen Bee',
-    price: 299.99,
-    description: 'The finest queen in the british isles',
-    image_url: null,
-    in_stock: null 
- };
+/**
+ * Mock functionality 
+ */
+jest.mock('react-redux', () => ({
+    ...jest.requireActual('react-redux'),
+    useDispatch: jest.fn(),
+    useSelector: jest.fn(),
+}));
 
 // Test Suite
 describe('<Product />', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
+        useDispatchMock.mockClear();
+        useSelectorMock.mockClear();
     });
-
-    // We also want to mock the useSelector and UseDispatch functions
-    const useSelectorMock = jest.spyOn(reactRedux,'useSelector');
-    const useDispatchMock = jest.spyOn(reactRedux,'useDispatch');
 
     beforeEach(() => {
-        // Reset the mocks
-        useSelectorMock.mockClear();
-        useDispatchMock.mockClear();
-
+        useDispatchMock.mockImplementation(() => () => {});
+        useSelectorMock.mockImplementation(selector => selector(mockStore));
     });
 
-    it('renders a products details to the screen', () => {
+    const useDispatchMock = reactRedux.useDispatch;
+    const useSelectorMock = reactRedux.useSelector;
 
-        // Mock the useParams fucntion
-        jest.spyOn(ReactRouter,'useParams').mockReturnValueOnce({product_id: 1});
+    const mockStore = {
+        search: {
+            results: [
+                {
+                    product_id: 1,
+                    name: 'Mocked product',
+                    description: 'Mocked product description',
+                    price: 1.99,
+                    image_url: 'mockedProductImage.png',
+                    in_stock: false
+                }
+            ]
+        }
+    }
+
+    // Mock the react-router-dom for the tests
+    jest.mock('react-router-dom', () => ({
+        ...jest.requireActual('react-router-dom'),
+        useParams: jest.fn().mockReturnValue({ product_id: 1}),
+    }));
+
+    it('renders a products details to the screen', () => {
 
         // Render the component
         render(<Product />);
 
         // Check the expected Product items appear
         // Product title
-        expect(screen.getByText('West Devonshire Queen Bee')).toBeInTheDocument();
+        expect(screen.getByText('Mocked product')).toBeInTheDocument();
 
         // Product Image
-        expect(screen.getByAltText('West Devonshire Queen Bee')).toBeInTheDocument();
+        expect(screen.getByAltText('Mocked product')).toBeInTheDocument();
 
         // Product Price
-        expect(screen.getByText('£299.99')).toBeInTheDocument();
+        expect(screen.getByText('£1.99')).toBeInTheDocument();
 
         // Add to cart button
         expect(screen.getByRole('button', { name: 'Add' } )).toBeInTheDocument();
@@ -74,7 +90,7 @@ describe('<Product />', () => {
         expect(mockedDispatch).not.toHaveBeenCalled();
 
         // The component we are testing
-        render(<Product data={mockProductData} />);
+        render(<Product />);
 
         // Get the button we wish to test
         const addToCartButton = screen.getByRole('button', { name: 'Add' });
