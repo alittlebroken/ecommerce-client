@@ -106,16 +106,19 @@ export const cartSlice = createSlice({
             const data = JSON.parse(action.payload);
             
             // Check we have some data to load
-            if(!data.status === 204){
-                state.items = data;
-                state.quantity = data.length;
-
+            if(data.status === 204){
+                state.items = [];
+                state.quantity = 0;
+                state.cost = 0;
+            } else if(data.status === 200) {
                 // Only extract the cart cost of we have data to display
-                if(!state.quantity === 0){
-                    state.cost += state.items.map(item => {
-                        return item.price;
-                    });
-                }
+                state.items = data.data;
+                state.quantity = data.data.length;
+                let cartCost = 0;
+                state.items.map(item => {
+                       cartCost += parseFloat(item.price);
+                });
+                state.cost = cartCost;
             }
   
         },
