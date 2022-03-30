@@ -19,7 +19,7 @@ const Navigation = (props) => {
 
     <div className="navmenu">
         {!auth ? <a href="/login" className="navitem">Login</a> : <a href="/profile" className="navitem">Profile</a> }
-        {!auth ?  <a href="/register" className="navitem">Register</a> : <a href="/cart" className="navitem">Cart {numCartItems ? numCartItems : null}</a> }
+        {!auth ?  <a href="/register" className="navitem">Register</a> : <a href="/cart" className="navitem">Cart {numCartItems ? `(${numCartItems})` : null}</a> }
         {!auth ?  '' : <a href="/login" className="navitem" onClick={handleLogout}>Logout</a> } 
     </div>
 
