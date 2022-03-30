@@ -79,7 +79,7 @@ const App = () => {
 
           <Search />
 
-          <Navigation authenticated={authenticated} handleLogout={handleUserLogout}/>
+          <Navigation handleLogout={handleUserLogout}/>
 
         </nav>
 
