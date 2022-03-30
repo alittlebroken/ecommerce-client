@@ -19,6 +19,7 @@ import Registration from '../Registration/Registration';
 import ProductsList from '../ProductsList/ProductsList';
 import Product from '../Product/Product';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Cart from '../Cart/Cart';
 
 const App = () => {
 
@@ -102,7 +103,7 @@ const App = () => {
           <Route path="/register" element={<Registration />}></Route>
           <Route path="/cart" element={
             <ProtectedRoute token={authToken}>
-              <h1>User Cart</h1>
+              <Cart />
             </ProtectedRoute>
           }></Route>
 
