@@ -116,7 +116,8 @@ export const cartSlice = createSlice({
                 state.quantity = data.data.length;
                 let cartCost = 0;
                 state.items.map(item => {
-                       cartCost += parseFloat(item.price);
+                    let itemTotalCost = parseFloat(item.price) * item.quantity;
+                       cartCost += itemTotalCost;
                 });
                 state.cost = cartCost;
             }
