@@ -2,9 +2,16 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './ProductCard.css';
-//import { addToCart } from '../../slices/Cart/cartSlice.js';
+
+import { addItemToCart } from '../../slices/Cart/cartSlice';
+import userEvent from '@testing-library/user-event';
+
+import { getAuth } from '../../utils/auth';
 
 const ProductCard = (props) => {
+
+    // extract auth data
+    const { user, token } = getAuth();
 
     // Extract information from the props
     const product_id = props.data.product_id;
@@ -19,10 +26,15 @@ const ProductCard = (props) => {
 
     // Handle the click on the addToCartButton
     const handleAddToCartClick = (e, prodid) => {
-        // Stop any inherent default behaviour
-        e.preventDefault();
-
-        //dispatch(addToCart(prodid));
+        
+        const payload = {
+            cart_id: user.cart,
+            product_id: prodid,
+            token,
+            quantity: 1
+        }
+        
+        dispatch(addItemToCart(payload));
 
     }; 
 

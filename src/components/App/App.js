@@ -9,6 +9,14 @@ import {
   setIsAuthenticated
 } from '../../slices/Auth/authSlice';
 
+import { 
+  loadCart,
+  selectCartCost,
+  selectCartItems
+} from '../../slices/Cart/cartSlice';
+
+import { getAuth } from '../../utils/auth';
+
 import './App.css';
 
 import Brand from '../Brand/Brand';
@@ -22,6 +30,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Cart from '../Cart/Cart';
 
 const App = () => {
+
+  // Get the autnetication information
+  const { auth, user, token } = getAuth();
 
   // generate a navigation alias for redirecting around routes
   const navigate = useNavigate();
@@ -37,6 +48,14 @@ const App = () => {
   useEffect(() => {
     authToken = JSON.parse(localStorage.getItem('token'));
   }, [authenticated]);
+
+  // Update the state with the cart contents for the logged in user
+    useEffect(() => {
+      dispatch(loadCart({
+          cart_id: user.cart,
+          token: token
+      }));
+    }, [dispatch, token, user.cart]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
