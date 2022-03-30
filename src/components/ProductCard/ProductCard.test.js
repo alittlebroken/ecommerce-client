@@ -63,7 +63,7 @@ describe('<ProductCard />', () => {
 
     });
 
-    it('dispatches an action when  the add to cart button is clicked', async () => {
+    it('dispatches an action when the add to cart button is clicked', async () => {
 
         // Dispatch Mock
         const mockedDispatch = jest.fn();

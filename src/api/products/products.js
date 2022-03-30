@@ -12,7 +12,6 @@ export const findProducts = async (payload) => {
         return JSON.stringify(response);
 
     } catch(error) {
-        
         throw error;
     }
 
