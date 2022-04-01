@@ -11,8 +11,7 @@ import {
 
 import { 
   loadCart,
-  selectCartCost,
-  selectCartItems
+  selectHasUpdated
 } from '../../slices/Cart/cartSlice';
 
 import { getAuth } from '../../utils/auth';
@@ -43,6 +42,9 @@ const App = () => {
   // Are we authenticated
   const authenticated = useSelector(selectAuthenticated);
 
+  // Has the cart been updated
+  const cartUpdated = useSelector(selectHasUpdated);
+
   let authToken = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const App = () => {
           cart_id: user.cart,
           token: token
       }));
-    }, [dispatch, token, user.cart]);
+    }, [dispatch, token, user.cart, cartUpdated]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
