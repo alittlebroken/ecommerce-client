@@ -27,6 +27,7 @@ import ProductsList from '../ProductsList/ProductsList';
 import Product from '../Product/Product';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Cart from '../Cart/Cart';
+import Checkout from '../Checkout/Checkout';
 
 const App = () => {
 
@@ -125,6 +126,11 @@ const App = () => {
           <Route path="/cart" element={
             <ProtectedRoute token={authToken}>
               <Cart />
+            </ProtectedRoute>
+          }></Route>
+          <Route path="/checkout" element={
+            <ProtectedRoute token={authToken}>
+              <Checkout />
             </ProtectedRoute>
           }></Route>
 
