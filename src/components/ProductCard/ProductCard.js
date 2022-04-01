@@ -33,7 +33,7 @@ const ProductCard = (props) => {
             token,
             quantity: 1
         }
-        
+
         dispatch(addItemToCart(payload));
 
     }; 
