@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { 
     loadCart,
@@ -22,6 +23,9 @@ const Cart = () => {
 
     // Alias the useDispatch hook
     const dispatch = useDispatch();
+
+    // Alias the useNavigate hook
+    const navigate = useNavigate();
 
     // Get the number of items in the cart
     const currentCartCost = useSelector(selectCartCost);
@@ -55,6 +59,16 @@ const Cart = () => {
         }));
     }, [dispatch, token, user.cart, cartUpdate]);
 
+    // Handle click for checkout button
+    const handleClick = (e) => {
+        // Prevent any default action
+        e.preventDefault();
+
+        // Navigate to the checkout page
+        navigate('/checkout');
+
+    }
+
     return (
 
         <div role="presentation" className="cart-container">
@@ -69,7 +83,11 @@ const Cart = () => {
                 onHandleClick={updateQuantity}/>
             })}
 
-            <button className="button">Place order</button>
+            <button 
+            className="button"
+            onClick={handleClick}>
+                Checkout
+            </button>
         </div>
     )
 };
