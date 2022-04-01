@@ -91,6 +91,7 @@ export const cartSlice = createSlice({
         [addItemToCart.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
+            state.updated  = !state.updated
         },
         [loadCart.pending]: (state, action) => {
             state.isLoading = true;
