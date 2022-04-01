@@ -1,0 +1,45 @@
+.cartitem-container {
+    display: grid;
+    grid-template-areas: "image title price"
+                         "image update update";
+    margin: 10px;
+    padding: 10px;
+    width: 750px;
+}
+
+.cartitem-image {
+    grid-area: image;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+}
+
+.cartitem-title {
+    grid-area: title;
+    width: 500px;
+}
+
+.cartitem-quantity {
+    grid-area: quantity;
+    
+}
+
+.cartitem-price {
+    grid-area: price;
+}
+
+.cartitem-update {
+    grid-area: update;
+}
+
+.cartitem-link {
+    color: blue;
+    text-decoration: underline;
+    border: 0;
+    background-color: white;
+    margin-left: 20px;
+}
+
+.cartitem-button {
+    margin: 10px;
+}

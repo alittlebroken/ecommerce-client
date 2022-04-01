@@ -9,6 +9,13 @@ import {
   setIsAuthenticated
 } from '../../slices/Auth/authSlice';
 
+import { 
+  loadCart,
+  selectHasUpdated
+} from '../../slices/Cart/cartSlice';
+
+import { getAuth } from '../../utils/auth';
+
 import './App.css';
 
 import Brand from '../Brand/Brand';
@@ -19,8 +26,12 @@ import Registration from '../Registration/Registration';
 import ProductsList from '../ProductsList/ProductsList';
 import Product from '../Product/Product';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Cart from '../Cart/Cart';
 
 const App = () => {
+
+  // Get the autnetication information
+  const { auth, user, token } = getAuth();
 
   // generate a navigation alias for redirecting around routes
   const navigate = useNavigate();
@@ -31,11 +42,22 @@ const App = () => {
   // Are we authenticated
   const authenticated = useSelector(selectAuthenticated);
 
+  // Has the cart been updated
+  const cartUpdated = useSelector(selectHasUpdated);
+
   let authToken = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
     authToken = JSON.parse(localStorage.getItem('token'));
   }, [authenticated]);
+
+  // Update the state with the cart contents for the logged in user
+    useEffect(() => {
+      dispatch(loadCart({
+          cart_id: user.cart,
+          token: token
+      }));
+    }, [dispatch, token, user.cart, cartUpdated]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
@@ -79,7 +101,7 @@ const App = () => {
 
           <Search />
 
-          <Navigation authenticated={authenticated} handleLogout={handleUserLogout}/>
+          <Navigation handleLogout={handleUserLogout}/>
 
         </nav>
 
@@ -102,7 +124,7 @@ const App = () => {
           <Route path="/register" element={<Registration />}></Route>
           <Route path="/cart" element={
             <ProtectedRoute token={authToken}>
-              <h1>User Cart</h1>
+              <Cart />
             </ProtectedRoute>
           }></Route>
 

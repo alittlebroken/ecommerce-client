@@ -30,7 +30,7 @@ const ProductsList = () => {
 
         // Dispatch the perform search action
         dispatch(performSearch({
-        searchTerms: searchTerm
+            searchTerms: searchTerm
         }))
 
     }, [dispatch, searchTerm]);

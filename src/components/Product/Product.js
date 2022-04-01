@@ -4,14 +4,19 @@ import { useParams } from 'react-router-dom';
 
 import './Product.css';
 
-//import { addToCart } from '../../slices/Cart/cartSlice';
 import { getProduct } from '../../slices/Search/searchSlice';
 
 import { 
     selectSearchResults
   } from '../../slices/Search/searchSlice';
 
+import { getAuth } from '../../utils/auth';
+import { addItemToCart } from '../../slices/Cart/cartSlice';
+
 const Product = () => {
+
+    // extract auth data
+    const { user, token } = getAuth();
 
     // Get the product ID from the URL
     const { product_id } = useParams();
@@ -33,9 +38,14 @@ const Product = () => {
     // Handle Add to cart click
     const handleAddToCartClick = (e, prodid) => {
 
-        e.preventDefault();
-
-        //dispatch(addToCart(prodid));
+        const payload = {
+            cart_id: user.cart,
+            product_id: prodid,
+            token,
+            quantity: 1
+        }
+        
+        dispatch(addItemToCart(payload));
 
     };
 
