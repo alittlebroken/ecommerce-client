@@ -91,11 +91,6 @@ export const cartSlice = createSlice({
         [addItemToCart.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
-
-            // Parse the data coming back
-            const results = JSON.parse(action.payload);
-
-            //TODO: Update the state to reflect the new item has been added
         },
         [loadCart.pending]: (state, action) => {
             state.isLoading = true;
