@@ -13,7 +13,7 @@ import {
 export const addItemToCart = createAsyncThunk(
     'cart/addItemToCart',
     async (payload, thunkAPI) => {
-        
+
         try{
             return await addToCart(payload);
         } catch(error) {
@@ -75,7 +75,8 @@ export const cartSlice = createSlice({
         quantity: 0,
         cost: 0,
         isLoading: false,
-        hasError: false
+        hasError: false,
+        updated: false
     },
     reducers: {},
     extraReducers: {
@@ -90,6 +91,11 @@ export const cartSlice = createSlice({
         [addItemToCart.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
+
+            // Parse the data coming back
+            const results = JSON.parse(action.payload);
+
+            //TODO: Update the state to reflect the new item has been added
         },
         [loadCart.pending]: (state, action) => {
             state.isLoading = true;
@@ -110,16 +116,18 @@ export const cartSlice = createSlice({
                 state.items = [];
                 state.quantity = 0;
                 state.cost = 0;
-            } else if(data.status === 200) {
+            } else {
                 // Only extract the cart cost of we have data to display
                 state.items = data.data;
+                // Make sure the cart items are listed in alphabetical order
+                state.items.sort((a, b) => (a.name > b.name) ? 1: -1);
                 state.quantity = data.data.length;
-                let cartCost = 0;
-                state.items.map(item => {
-                    let itemTotalCost = parseFloat(item.price) * item.quantity;
-                       cartCost += itemTotalCost;
+                // Work out the cart cost
+                let cartCost = 0.00;
+                cartCost = state.items.map(item => {
+                    return parseFloat(item.price).toFixed(2) * parseInt(item.quantity);  
                 });
-                state.cost = cartCost;
+                state.cost = cartCost.reduce((prevSum, a) => prevSum + a, 0);
             }
   
         },
@@ -134,6 +142,7 @@ export const cartSlice = createSlice({
         [updateMyCart.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
+            state.updated  = !state.updated
         },
         [clearMyCart.pending]: (state, action) => {
             state.isLoading = true;
@@ -161,6 +170,7 @@ export const selectIsLoading = state => state.cart?.isLoading;
 export const selectHasError = state => state.cart?.hasError;
 export const selectCartCount = state => state.cart?.quantity;
 export const selectCartCost = state => state.cart?.cost;
+export const selectHasUpdated = state => state.cart?.updated;
 
 // Actions
 //export {} = cartSlice.actions;
