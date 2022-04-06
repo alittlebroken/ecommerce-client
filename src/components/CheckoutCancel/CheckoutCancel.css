@@ -12,3 +12,13 @@
 .checkoutcancel-container span {
     padding: 20px;
 }
+
+@media only screen and (max-width: 650px) {
+
+    .checkoutcancel-container {
+
+        width: 400px;
+
+    }
+
+}
