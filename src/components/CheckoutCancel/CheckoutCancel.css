@@ -1,0 +1,24 @@
+.checkoutcancel-container {
+    display: grid;
+    width: 900px;
+    margin: 0 auto;
+    padding: 25px;
+}
+
+.checkoutcancel-container h2 {
+    text-align: center;
+}
+
+.checkoutcancel-container span {
+    padding: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+
+    .checkoutcancel-container {
+
+        width: 400px;
+
+    }
+
+}

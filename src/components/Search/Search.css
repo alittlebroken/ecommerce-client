@@ -1,13 +1,25 @@
 .search-form {
     display: grid;
     grid-area: search;
-    grid-template-columns: auto 100px;
+    grid-template-columns: auto 150px;
     width: auto;
 }
 
 @media only screen and (max-width: 650px) {
-    .search-form {
-        grid-template-columns: auto 100px;
-        width: 100vw;
+
+    .search-field {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
     }
+
+    .search-button {
+        width: 80px;
+    }
+
+    .search-form {
+        grid-template-columns: auto 80px;
+        width: calc(100vw - 15px);
+        margin: 0 5px;
+    }
+
 }

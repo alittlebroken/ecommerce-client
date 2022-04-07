@@ -179,7 +179,7 @@ describe('<Cart />', () => {
         render(<Cart />);
 
         // Get the button we wish to test
-        const addToCartButton = screen.getByRole('button', { name: 'Order' });
+        const addToCartButton = screen.getByRole('button', { name: 'Checkout' });
         userEvent.click(addToCartButton);
 
         // Check that the dispatch method was called at least once

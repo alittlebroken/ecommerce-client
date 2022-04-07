@@ -27,10 +27,13 @@ import ProductsList from '../ProductsList/ProductsList';
 import Product from '../Product/Product';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Cart from '../Cart/Cart';
+import Checkout from '../Checkout/Checkout';
+import CheckoutSuccess from '../CheckoutSuccess/CheckoutSuccess';
+import CheckoutCancel from '../CheckoutCancel/CheckoutCancel';
 
 const App = () => {
 
-  // Get the autnetication information
+  // Get the authentication information
   const { auth, user, token } = getAuth();
 
   // generate a navigation alias for redirecting around routes
@@ -54,10 +57,10 @@ const App = () => {
   // Update the state with the cart contents for the logged in user
     useEffect(() => {
       dispatch(loadCart({
-          cart_id: user.cart,
+          cart_id: user?.cart,
           token: token
       }));
-    }, [dispatch, token, user.cart, cartUpdated]);
+    }, [dispatch, token, user?.cart, cartUpdated]);
 
   // Handle hamburger click
   const handleHamburgerClick = () => {
@@ -127,6 +130,14 @@ const App = () => {
               <Cart />
             </ProtectedRoute>
           }></Route>
+          <Route path="/checkout" element={
+            <ProtectedRoute token={authToken}>
+              <Checkout />
+            </ProtectedRoute>
+          }></Route>
+
+          <Route path="/success" element={<CheckoutSuccess />}/>
+          <Route path="/cancel" element={<CheckoutCancel />}/>
 
         </Routes>
 

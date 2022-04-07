@@ -1,0 +1,19 @@
+.checkoutsuccess-container {
+    display: grid;
+    grid-gap: 1rem;
+    width: 900px;
+    margin: 0 auto;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 650px) {
+
+    .checkoutsuccess-container {
+
+        width: 400px;
+
+    }
+
+}
