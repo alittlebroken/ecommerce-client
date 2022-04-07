@@ -1,6 +1,18 @@
 .cart-container {
-    margin: 0 auto;
-    padding: 15px;
-    width: 800px;
+    margin: 5px;
+    padding: 5px;
+    width: 100vw;
     display: grid;
 }
+
+@media only screen and (max-width: 650px) {
+
+    .cart-container h3 {
+        font-size: 1.2rem;
+    }
+
+    .cart-container h5 {
+        font-size: 0.8rem;
+    }
+
+ }

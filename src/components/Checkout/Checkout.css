@@ -15,10 +15,11 @@
     grid-area: cart-order;
     width: 250px;
     margin: 0 auto;
-    border: 1px solid gray;
     padding: 20px;
     border-radius: 15px;
     font-size: 0.8rem;
+    background-color: rgba(238, 217, 113, 0.297);
+    border: 1px solid #EED971FF;
 }
 
 .checkout-orderdetails > button {
@@ -33,3 +34,20 @@
     font-weight: bold;
 }
 
+@media only screen and (max-width: 650px) { 
+
+    .checkout-container {
+        grid-template-areas: "cart-content"
+                             "cart-order";
+        width: calc(100vw - 20px);
+        margin: 0;
+        padding: 10px;
+    }
+
+    .checkout-orderdetails {
+        width: calc(100vw - 20px);
+        margin: 0;
+        padding: 5px;
+    }
+
+}

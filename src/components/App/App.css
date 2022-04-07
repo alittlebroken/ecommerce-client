@@ -33,7 +33,8 @@
 
 /* Common Styling */
 .button {
-  background-color: orange;
+  background-color: rgba(238, 217, 113, 1);
+  border: 1px solid #EED971FF;
   width: 150px;
   border-radius: 10px;
   padding: 5px;

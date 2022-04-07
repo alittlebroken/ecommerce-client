@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  
     setSearchTerm,
     selectSearchTerms } from '../../slices/Search/searchSlice';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import './Search.css';
@@ -39,6 +38,7 @@ const Search = () => {
         <Form name="search" id="search" className="search-form">
 
             <Form.Control type="search"
+            className="search-field"
             placeholder="Search"
             name="searchInput"
             id="SearchInput"
@@ -47,13 +47,12 @@ const Search = () => {
             />
 
             
-            <Button
-            variant="warning"
+            <button className="button search-button"
             name="search"
             id="searchButton"
             onClick={handleButtonClick}>
                 Search
-            </Button>
+            </button>
             
 
         </Form>
