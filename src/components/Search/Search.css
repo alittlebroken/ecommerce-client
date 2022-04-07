@@ -1,7 +1,7 @@
 .search-form {
     display: grid;
     grid-area: search;
-    grid-template-columns: auto 100px;
+    grid-template-columns: auto 150px;
     width: auto;
 }
 
