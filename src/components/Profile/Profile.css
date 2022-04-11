@@ -1,0 +1,38 @@
+.profile-container {
+    display: grid;
+    width: 800px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.profile-image {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-avatar {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 10px solid black;
+}
+
+.profile-name {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.profile-email {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    
+}
