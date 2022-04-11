@@ -30,6 +30,7 @@ import Cart from '../Cart/Cart';
 import Checkout from '../Checkout/Checkout';
 import CheckoutSuccess from '../CheckoutSuccess/CheckoutSuccess';
 import CheckoutCancel from '../CheckoutCancel/CheckoutCancel';
+import Profile from '../Profile/Profile';
 
 const App = () => {
 
@@ -119,7 +120,7 @@ const App = () => {
           <Route path="/products/:product_id" element={<Product />}></Route>
           <Route path="/profile" element={
             <ProtectedRoute token={authToken}>
-              <h1>User Profile</h1>
+              <Profile />
             </ProtectedRoute>
           }></Route>
           <Route path="/login" element={<Login token={authToken} />}></Route>

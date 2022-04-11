@@ -64,3 +64,54 @@ export const registerUser = async (credentials) => {
     }
 
 };
+
+/**
+ * get user details
+ */
+export const getUser = async (payload) => {
+
+    try{
+
+        /**
+         * Extract the data from the payload
+         */
+        const { user_id, token } = payload;
+        
+        /**
+         * Get the users details from the API
+         */
+        const response = await axios.get(`${BASE_URL}/users/${user_id}?secret_token=${token}`);
+        
+        
+        return response;
+
+    } catch(error) {
+        throw error;
+    }
+
+};
+
+/**
+ * Update a users account details
+ */
+export const updateUser = async (payload) => {
+
+    try{
+
+        /** 
+         * Extract the data from the arguments
+         */
+        const { id, token, updates } = payload;
+
+        /**
+         * Send the request and record the response from the API
+         */
+        const response = await axios.put(`${BASE_URL}/users/${id}?secret_token=${token}`, updates);
+        
+        return response;
+
+    } catch(error) {
+        throw error;
+    }
+
+};

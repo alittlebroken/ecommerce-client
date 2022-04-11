@@ -1,0 +1,63 @@
+.profileaccount-container {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-areas: "title"
+                         "form";
+}
+
+.profileaccount-form {
+    display: grid;
+    grid-area: form;
+    grid-template-areas: "forename surname"
+                         "contact contact"
+                         "save save";
+    grid-gap: 10px;
+}
+
+.profileaccount-title {
+    grid-area: title;
+}
+
+.profileaccount-forename {
+    grid-area: forename;
+}
+
+.profileaccount-surname {
+    grid-area: surname;
+}
+
+.profileaccount-email {
+    grid-area: email;
+    width: 10%;
+}
+
+.profileaccount-contact {
+    grid-area: contact;
+}
+
+.profileaccount-save {
+    grid-area: save;
+}
+
+.profileaccount-messages {
+    display: grid;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.message-ok {
+    border: 3px solid green;
+    color: green;
+    background-color: rgba(111, 217, 111, 0.433);
+}
+
+.message-error {
+    border: 3px solid red;
+    color: red;
+    background-color: rgba(208, 113, 113, 0.433)
+}
