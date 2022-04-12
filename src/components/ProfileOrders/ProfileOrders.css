@@ -59,12 +59,18 @@
 
 .profileorders-total-data {
     grid-area: total-data;
+    display: grid;
+    justify-content: center;
 }
 
 .profileorders-pending-data {
     grid-area: pending-data;
+    display: grid;
+    justify-content: center;
 }
 
 .profileorders-completed-data {
     grid-area: completed-data;
+    display: grid;
+    justify-content: center;
 }
