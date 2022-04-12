@@ -1,0 +1,70 @@
+.profileorders-container {
+    display: grid;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 15px;
+    justify-content: space-between;
+    grid-template-areas: "title title title"
+                         "total pending completed";
+}
+
+.profileorders-title {
+    grid-area: title;
+}
+
+.profileorders-infobox {
+    background-color: rgba(238, 217, 113, 1);
+    border: 3px solid rgb(216, 182, 10);
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; 
+}
+
+.profileorders-total {
+    display: grid;
+    grid-area: total;
+    grid-template-areas: "total-title"
+                         "total-data";
+}
+
+.profileorders-pending {
+    display: grid;
+    grid-area: pending;
+    grid-template-areas: "pending-title"
+                         "pending-data";
+}
+
+.profileorders-completed {
+    display: grid;
+    grid-area: completed;
+    grid-template-areas: "completed-title"
+                         "completed-data";
+
+}
+
+.profileorders-total-title {
+    grid-area: total-title;
+}
+
+.profileorders-pending-title {
+    grid-area: pending-title;
+}
+
+.profileorders-completed-title {
+    grid-area: completed-title;
+}
+
+.profileorders-total-data {
+    grid-area: total-data;
+}
+
+.profileorders-pending-data {
+    grid-area: pending-data;
+}
+
+.profileorders-completed-data {
+    grid-area: completed-data;
+}

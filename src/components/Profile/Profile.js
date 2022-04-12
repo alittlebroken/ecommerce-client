@@ -3,6 +3,7 @@ import { useDispatch, useSelect } from 'react-redux';
 import { getAuth } from '../../utils/auth';
 import { getUser } from '../../api/auth/auth';
 
+import ProfileOrders from  '../ProfileOrders/ProfileOrders';
 import ProfileAccount from '../ProfileAccount/ProfileAccount';
 import './Profile.css';
 
@@ -57,6 +58,8 @@ const Profile = () => {
             <div role="presentation" className="profile-email">
                 <span>{profileData.email}</span>
             </div>
+
+            <ProfileOrders />
 
             <ProfileAccount 
             profileData={profileData}
