@@ -2,16 +2,22 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { 
-    selectIsLoading,
-    selectHasError,
-    selectOrders,
     selectCompletedOrders,
     selectTotalOrders,
-    selectPendingOrders
+    selectPendingOrders,
+    loadOrders
 } from '../../slices/Orders/ordersSlice';
+
+import { getAuth } from '../../utils/auth';
+
 import './ProfileOrders.css';
 
 const ProfileOrders = () => {
+
+    /**
+     * Authentication data
+     */
+    const { user, token } = getAuth();
 
     /**
      * alias the dispatch hook
@@ -24,6 +30,21 @@ const ProfileOrders = () => {
     const totalOrders = useSelector(selectTotalOrders);
     const pendingOrders = useSelector(selectPendingOrders);
     const completedOrders = useSelector(selectCompletedOrders);
+
+    /**
+     * Load the data
+     */
+    useEffect(() => {
+        /**
+         * Create the payload for loading the order data
+         */
+        const payload = {
+            user_id: user._id,
+            token: token,
+        }
+
+        dispatch(loadOrders(payload));
+    },[user._id,token]);
 
     return (
         <div role="presentation" className="profileorders-container">
