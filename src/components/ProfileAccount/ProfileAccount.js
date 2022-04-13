@@ -22,8 +22,6 @@ const ProfileAccount = (props) => {
         contact_number
     } = props.profileData;
 
-    console.log(props.profileData)
-
     /**
      * Keep track of the components form inputs
      */

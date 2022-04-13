@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import { 
     selectCompletedOrders,
     selectTotalOrders,
@@ -52,36 +54,42 @@ const ProfileOrders = () => {
             <h3 className="profileorders-title">Order Summary:</h3>
 
             <div role="presentation" className="profileorders-total  profileorders-infobox">
-                <span 
-                className="profileorders-total-title">
-                    Total:
-                </span>
-                <span 
-                className="profileorders-total-data">
-                    {totalOrders}
-                </span>
+                <a href="/orders/all">  
+                    <span 
+                    className="profileorders-total-title">
+                        Total
+                    </span>
+                    <span 
+                    className="profileorders-total-data">
+                        {totalOrders}
+                    </span>
+                </a>
             </div>
 
             <div role="presentation" className="profileorders-pending profileorders-infobox">
-                <span 
-                className="profileorders-pending-title">
-                    Pending:
-                </span>
-                <span 
-                className="profileorders-pending-data">
-                    {pendingOrders}
-                </span>
+                <a href="/orders/pending">
+                    <span 
+                    className="profileorders-pending-title">
+                        Pending
+                    </span>
+                    <span 
+                    className="profileorders-pending-data">
+                        {pendingOrders}
+                    </span>
+                </a>
             </div>
 
             <div role="presentation" className="profileorders-completed profileorders-infobox">
-                <span 
-                className="profileorders-completed-title">
-                    Completed:
-                </span>
-                <span 
-                className="profileorders-completed-data">
-                    {completedOrders}
-                </span>
+                <a href="/orders/completed">
+                    <span 
+                    className="profileorders-completed-title">
+                        Completed
+                    </span>
+                    <span 
+                    className="profileorders-completed-data">
+                        {completedOrders}
+                    </span>
+                </a>
             </div>
 
         </div>

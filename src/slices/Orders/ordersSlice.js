@@ -18,7 +18,7 @@ export const loadOrders = createAsyncThunk(
         try{
 
             const response = await getCustomerOrders(payload);
-            console.log(response)
+            
             return JSON.stringify(response);
 
         } catch(error) {
@@ -36,6 +36,7 @@ const initialState = {
     completed: 0,
     pending: 0,
     total: 0,
+    filter: null,
     isLoading: false,
     hasError: false,
 }
@@ -46,7 +47,11 @@ const initialState = {
 const ordersSlice = createSlice({
     name: 'orders',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        setFilter: (state, action) => {
+            state.filter = action.payload;
+        }
+    },
     extraReducers: {
         [loadOrders.pending]: (state, action) => {
             state.isLoading = true;
@@ -68,7 +73,16 @@ const ordersSlice = createSlice({
             /**
              * Load the data into the state
              */
-            state.orders = result.data;
+            if(state.filter == null || state.filter === 'all'){
+                /**
+                 * load all orders into the state
+                 */
+                 state.orders = result.data;
+            } else if(state.filter === 'pending'){
+                state.orders = result.data.filter(item => item.order_arrived == null);
+            } else if(state.filter === 'completed'){
+                state.orders = result.data.filter(item => item.order_arrived != null);
+            }
 
             /**
              * Set the total count of orders
@@ -87,6 +101,11 @@ const ordersSlice = createSlice({
             const completed = state.orders.filter(item => item.order_arrived != null);
             state.completed = completed.length;
 
+            /**
+             * Sort the orders by date
+             */
+             state.orders.sort((a, b) => (a.order_date < b.order_date) ? 1: -1);
+
         }
     },
 });
@@ -100,11 +119,12 @@ export const selectOrders = state => state.orders?.orders;
 export const selectCompletedOrders = state => state.orders?.completed;
 export const selectTotalOrders = state => state.orders?.total;
 export const selectPendingOrders = state => state.orders?.pending;
+export const selectOrderFilter = state => state.orders?.filter;
 
 /**
  * Export the actions
- * export  const {} = ordersSlice.actions;
  */
+ export const { setFilter } = ordersSlice.actions;
 
 /**
  * Export the reducer for the store
