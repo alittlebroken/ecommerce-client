@@ -13,7 +13,7 @@ export const getCustomerOrders = async (payload) => {
     try{
 
         const response = await axios.get(`${BASE_URL}/users/${payload.user_id}/orders?secret_token=${payload.token}`)
-        console.log(response);
+        
         return response;
 
     } catch(error) {
