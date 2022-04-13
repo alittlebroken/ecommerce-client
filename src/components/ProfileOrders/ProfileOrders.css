@@ -20,7 +20,16 @@
     width: 150px;
     justify-content: center;
     align-items: center;
-    font-weight: bold; 
+    font-weight: bold;
+}
+
+.profileorders-infobox a {
+    text-decoration: none;
+    color: black;
+}
+
+.profileorders-infobox a:hover {
+    color: rgb(216, 182, 10);
 }
 
 .profileorders-total {
