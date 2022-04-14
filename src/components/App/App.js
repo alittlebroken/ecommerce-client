@@ -32,6 +32,7 @@ import CheckoutSuccess from '../CheckoutSuccess/CheckoutSuccess';
 import CheckoutCancel from '../CheckoutCancel/CheckoutCancel';
 import Profile from '../Profile/Profile';
 import Orders from '../Orders/Orders';
+import Order from '../Order/Order';
 
 const App = () => {
 
@@ -140,6 +141,11 @@ const App = () => {
           <Route path="/orders/:filter" element={
             <ProtectedRoute token={authToken}>
               <Orders />
+            </ProtectedRoute>
+          }></Route>
+          <Route path="/order/:id" element={
+            <ProtectedRoute token={authToken}>
+              <Order />
             </ProtectedRoute>
           }></Route>
           <Route path="/success" element={<CheckoutSuccess />}/>
