@@ -29,6 +29,24 @@ export const loadOrders = createAsyncThunk(
 );
 
 /**
+ * Thunk for loading a single order into the store
+ */
+export const loadOrder = createAsyncThunk(
+    'orders/loadOrder',
+    async (payload, thunkAPI) => {
+        try{
+            /**
+             * load the data from the API
+             */
+            const response = await getCustomerOrders(payload);
+            return JSON.stringify(response);
+        } catch(error) {
+            throw error;
+        }
+    }
+);
+
+/**
  * Set the initial state for the store
  */
 const initialState = {
@@ -106,7 +124,25 @@ const ordersSlice = createSlice({
              */
              state.orders.sort((a, b) => (a.order_date < b.order_date) ? 1: -1);
 
-        }
+        },
+        [loadOrder.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [loadOrder.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },
+        [loadOrder.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+
+            /**
+             * Parses the JSON response
+             */
+            const result = JSON.parse(action.payload);
+            state.orders = result;
+        },
     },
 });
 
