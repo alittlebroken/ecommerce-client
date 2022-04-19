@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 /**
  * Import the API functions
  */
-import { getCustomerOrders } from '../../api/orders/orders';
+import { getCustomerOrders, getCustomerOrder, getOrderItems } from '../../api/orders/orders';
 
 /**
  * Thunk for loading the orders data into the store
@@ -38,8 +38,28 @@ export const loadOrder = createAsyncThunk(
             /**
              * load the data from the API
              */
-            const response = await getCustomerOrders(payload);
+            const response = await getCustomerOrder(payload);
             return JSON.stringify(response);
+        } catch(error) {
+            throw error;
+        }
+    }
+);
+
+/**
+ * Thunk for loading items for an order
+ */
+export const loadOrderItems = createAsyncThunk(
+    'orders/loadOrderItems',
+    async (payload, thunkAPI) => {
+        try{
+
+            /**
+             * load the items for an order
+             */
+            const response = getOrderItems(payload);
+            return JSON.stringify(response);
+
         } catch(error) {
             throw error;
         }
@@ -141,7 +161,42 @@ const ordersSlice = createSlice({
              * Parses the JSON response
              */
             const result = JSON.parse(action.payload);
-            state.orders = result;
+            state.orders = result.data[0];
+        },
+        [loadOrderItems.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [loadOrderItems.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+        },
+        [loadOrderItems.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+
+            /**
+             * parse the JSON returned
+             */
+            const response = JSON.parse(action.payload);
+
+            /**
+             * Add the data to the order but only if we 
+             * have 1 order
+             */
+            if(state.orders.length === 1){
+                /**
+                 * We are good to go lets add the orders
+                 */
+                state.orders = [
+                    {
+                    ...state.orders[0],
+                    items: action.payload.data,
+                    },
+                ]
+            }
+
+
         },
     },
 });
