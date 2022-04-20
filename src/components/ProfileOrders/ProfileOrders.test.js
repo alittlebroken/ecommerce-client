@@ -15,8 +15,15 @@ import ProfileOrders from './ProfileOrders';
 describe('<ProfileOrders />', () => {
 
     /**
-             * Mock a list of orders for a customer
-             */
+     * Mock the user auth object
+     */
+    const user = {
+        _id: 1
+    }
+
+    /**
+    * Mock a list of orders for a customer
+    */
      const customerOrders = [
         {
             order_id: 1,
