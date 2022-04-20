@@ -1,0 +1,27 @@
+.order-container {
+    display: grid;
+    width: 600px;
+    margin: 0 auto;
+    padding: 15px;
+    grid-gap: 25px;
+}
+
+.order-details-container {
+    display: grid;
+    grid-template-columns: 200px auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid rgb(216, 182, 10);
+    width: 100%;
+}
+
+.order-details-container label {
+    font-weight: bold;
+}
+
+.orderitems-container {
+    display: grid;
+    padding: 5px;
+    grid-gap: 15px;
+}
