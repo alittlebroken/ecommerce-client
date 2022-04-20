@@ -11,3 +11,7 @@
   --header-bg: #207868;
   --brand-color: #897A5F;
 }
+
+body {
+  background-color: #eaecee;
+}

@@ -1,0 +1,54 @@
+.ordercard-container {
+
+    display: grid;
+    border-radius: 10px;
+    background-color: white;
+    border: 3px solid rgb(216, 182, 10);
+    grid-template-areas: "ordernum orderdate"
+                         "tracking tracking"
+                         "quantity total"
+                         "details status";
+    justify-content: space-between;
+    width: 500px;
+    margin: 0 auto;
+    padding: 15px;
+    font-size: .8rem;
+}
+
+.ordercard-container a {
+    text-decoration: none;
+    color: black;
+}
+
+.ordercard-ordernum {
+    grid-area: ordernum;
+}
+
+.ordercard-label {
+    font-weight: bold;
+}
+
+.ordercard-orderdate {
+    grid-area: orderdate;
+}
+
+.ordercard-tracking {
+    grid-area: tracking;
+}
+
+.ordercard-quantity {
+    grid-area: quantity;
+}
+
+.ordercard-total {
+    grid-area: total;
+}
+
+.ordercard-details {
+    grid-area: details;
+    border: 3px solid rgb(216, 182, 10);
+}
+
+.ordercard-status {
+    grid-area: status;
+}
