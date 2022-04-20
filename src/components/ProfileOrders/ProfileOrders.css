@@ -83,3 +83,21 @@
     display: grid;
     justify-content: center;
 }
+
+@media only screen and (max-width: 650px) {
+
+    .profileorders-container {
+        width: 100vw;
+        grid-template-areas: "title"
+                             "total"
+                             "pending"
+                             "completed";
+        grid-gap: 15px;
+        padding: 5px;
+    }
+
+    .profileorders-total,.profileorders-pending, .profileorders-completed {
+        width: calc(100vw - 12px);
+    }
+
+ }

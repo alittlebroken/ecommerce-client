@@ -61,3 +61,26 @@
     color: red;
     background-color: rgba(208, 113, 113, 0.433)
 }
+
+@media only screen and (max-width: 650px) {
+
+    .profileaccount-container {
+        width: 100vw;
+        padding: 5px;
+    }
+
+    .profileaccount-form {
+        display: grid;
+        grid-area: form;
+        grid-template-areas: "forename"
+                             "surname"
+                             "contact"
+                             "save";
+        grid-gap: 10px;
+    }
+
+    input[type="text"] {
+        width: calc(100vw - 20px);
+    }
+
+ }

@@ -34,5 +34,20 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    
+}
+
+@media only screen and (max-width: 650px) { 
+
+    .profile-container {
+        width: 100vw;
+        padding: 2px;
+        margin: 0;
+    }
+
+   .profile-avatar {
+       margin-top: 10px;
+       width: 150px;
+       height: 150px;
+   }
+
 }

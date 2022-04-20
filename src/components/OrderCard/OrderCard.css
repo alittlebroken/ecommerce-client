@@ -52,3 +52,24 @@
 .ordercard-status {
     grid-area: status;
 }
+
+@media only screen and (max-width: 650px) {
+
+    .ordercard-container {
+        width: 100vw;
+        grid-template-areas: "ordernum"
+                             "orderdate"
+                             "tracking"
+                             "quantity"
+                             "total"
+                             "details";
+        justify-content: start;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .ordercard-details {
+        width: calc(100vw - 20px);
+    }
+
+ }
