@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import { 
     BASE_URL, 
-    getCustomerOrders, 
+    getCustomerOrders,
+    getCustomerOrder,
+    getOrderItems
 } from './orders';
 
 jest.mock("axios");
@@ -106,6 +108,183 @@ describe('getCustomerOrders', () => {
 
                 // Send the request
                 await getCustomerOrders(payload);
+
+            } catch (error) {
+                expect(error).toEqual(errorMessage);
+            }
+
+        });
+
+
+    });
+
+});
+
+describe('getCustomerOrder', () => {
+    
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    describe('when API call is successful', () => {
+
+        it('should return a list of customers orders', async () => {
+
+            /**
+             * Mock a list of orders for a customer
+             */
+            const customerOrder = [
+                {
+                    order_id: 1,
+                    user_id: 1,
+                    order_date: '2022-04-06 10:44:05.877',
+                    order_paid_for: false,
+                    order_notes: null,
+                    order_shipped: null,
+                    order_arrived: null,
+                    order_total_cost: 825.94
+                },
+            ];
+            axios.get.mockReturnValueOnce(customerOrder);
+
+            /**
+             * Token to send with the request
+             */
+            const authToken = '485723457385738475';
+
+            /**
+             * Create the payload to send
+             */
+            const payload = {
+                user_id: 1,
+                order_id: 1,
+                token: authToken,
+            };
+
+            /**
+             * Make the call to the API route
+             */
+            const response = await getCustomerOrder(payload);
+
+            /**
+             * Check that the method behaved as expected
+             */
+             expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/users/${payload.user_id}/orders/${payload.order_id}?secret_token=${authToken}`);
+             expect(response).toEqual(customerOrder);
+
+        });
+
+    });
+
+    describe('when API call is not successful', () => {
+
+        it('returns an error message', async () => {
+
+            const errorMessage = new Error('No records were found with the specified parameters');
+            axios.get.mockRejectedValueOnce(errorMessage);
+
+            /**
+             * Token to send with the request
+             */
+             const authToken = '485723457385738475';
+
+             /**
+              * Create the payload to send
+              */
+             const payload = {
+                 user_id: 1,
+                 order_id: 1,
+                 token: authToken,
+             };
+
+            try {
+
+                // Send the request
+                await getCustomerOrder(payload);
+
+            } catch (error) {
+                expect(error).toEqual(errorMessage);
+            }
+
+        });
+
+
+    });
+
+});
+
+describe('getOrderItems', () => {
+    
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    describe('when API call is successful', () => {
+
+        it('should return a list of an orders items', async () => {
+
+            /**
+             * Mock a list of orders for a customer
+             */
+            const orderItems = [
+                
+            ];
+            axios.get.mockReturnValueOnce(orderItems);
+
+            /**
+             * Token to send with the request
+             */
+            const authToken = '485723457385738475';
+
+            /**
+             * Create the payload to send
+             */
+            const payload = {
+                user_id: 1,
+                order_id: 1,
+                token: authToken,
+            };
+
+            /**
+             * Make the call to the API route
+             */
+            const response = await getCustomerOrder(payload);
+
+            /**
+             * Check that the method behaved as expected
+             */
+             expect(axios.get).toHaveBeenCalledWith(`${BASE_URL}/users/${payload.user_id}/orders/${payload.order_id}?secret_token=${authToken}`);
+             expect(response).toEqual(customerOrder);
+
+        });
+
+    });
+
+    describe('when API call is not successful', () => {
+
+        it('returns an error message', async () => {
+
+            const errorMessage = new Error('No records were found with the specified parameters');
+            axios.get.mockRejectedValueOnce(errorMessage);
+
+            /**
+             * Token to send with the request
+             */
+             const authToken = '485723457385738475';
+
+             /**
+              * Create the payload to send
+              */
+             const payload = {
+                 user_id: 1,
+                 order_id: 1,
+                 token: authToken,
+             };
+
+            try {
+
+                // Send the request
+                await getCustomerOrder(payload);
 
             } catch (error) {
                 expect(error).toEqual(errorMessage);
