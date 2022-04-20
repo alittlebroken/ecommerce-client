@@ -69,12 +69,6 @@ const OrderCard = (props) => {
             </button>
           </a>
 
-
-          <span className="ordercard-statues">
-            <label className="ordercard-label">
-                
-            </label>
-          </span>
         </div>
     )
 
