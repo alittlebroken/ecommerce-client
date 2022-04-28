@@ -1,5 +1,33 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from '../../api/auth/auth';
+import { loginUser, registerUser, loginGoogleUser } from '../../api/auth/auth';
+
+/**
+ * Thunk for loading a google user
+ */
+export const performGoogleLogin = createAsyncThunk(
+    'auth/performGoogleLogin',
+    async (payload, thunkAPI) => {
+        try{
+
+            const response = await loginGoogleUser(payload);
+
+            // Do we have any error
+            if(response.name === 'Error') {
+                const err = new Error(response);
+                throw err;
+            }
+
+            return {
+                token: response,
+                isAuthenticated: true
+            }
+
+        } catch(err) {
+            const error = new Error('There was an issue with login')
+            throw error;
+        }
+    }
+);
 
 // Login thunk
 export const performLogin = createAsyncThunk(
@@ -30,7 +58,7 @@ export const performLogin = createAsyncThunk(
 export const performLogout = createAsyncThunk(
     'auth/performLogout',
     async (credentials, thunkAPI) => {
-
+        
     }
 );
 
@@ -103,6 +131,34 @@ const authStore = createSlice({
             localStorage.removeItem('token');
         },
         [performLogin.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;
+            state.errorMessage = '';
+
+            // All is OK
+            state.isAuthenticated = true;
+            state.accessToken = action.payload.token.data.token;
+
+            // Set token in localstorage
+            localStorage.setItem('token',JSON.stringify(state.accessToken));
+
+            // Which page to redirect to
+            state.redirectUrl = '/';
+            
+        },
+        [performGoogleLogin.pending]: (state, action) => {
+            state.isLoading = true;
+            state.hasError = false;
+        },
+        [performGoogleLogin.rejected]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = true;
+            state.errorMessage = action.error.message;
+
+            // Remove auth token in localStorage
+            localStorage.removeItem('token');
+        },
+        [performGoogleLogin.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
             state.errorMessage = '';
