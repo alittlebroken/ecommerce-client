@@ -48,7 +48,7 @@ const Profile = () => {
         <div className="profile-container" role="presentation">
 
             <div role="presentation" className="profile-image">
-                {profileData?.avatar_url ? null : <img className="profile-avatar" src={`/media/images/deafult_profile_avatar.jpg`} alt="User Profile Avatar" />}
+                {profileData?.avatar_url ? <img className="profile-avatar" src={profileData.avatar_url} alt="User Profile Avatar" /> : <img className="profile-avatar" src={`/media/images/deafult_profile_avatar.jpg`} alt="User Profile Avatar" />}
             </div>
 
             <div role="presentation" className="profile-name">
