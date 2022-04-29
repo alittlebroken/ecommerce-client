@@ -107,42 +107,45 @@ const ordersSlice = createSlice({
              * parse the JSON response
              */
             const result = JSON.parse(action.payload)
-            
-            /**
-             * Load the data into the state
-             */
-            if(state.filter == null || state.filter === 'all'){
+
+            if(result.data){
+
                 /**
-                 * load all orders into the state
+                 * Load the data into the state
                  */
-                 state.orders = result.data;
-            } else if(state.filter === 'pending'){
-                state.orders = result.data.filter(item => item.order_arrived == null);
-            } else if(state.filter === 'completed'){
-                state.orders = result.data.filter(item => item.order_arrived != null);
-            }
+                if(state.filter == null || state.filter === 'all'){
+                    /**
+                     * load all orders into the state
+                     */
+                    state.orders = result.data;
+                } else if(state.filter === 'pending'){
+                    state.orders = result?.data.filter(item => item.order_arrived == null);
+                } else if(state.filter === 'completed'){
+                    state.orders = result?.data.filter(item => item.order_arrived != null);
+                }
 
-            /**
-             * Set the total count of orders
-             */
-            state.total = state.orders.length;
+                /**
+                 * Set the total count of orders
+                 */
+                state.total = state.orders?.length;
 
-            /**
-             * Set the pending orders
-             */
-            const pending = state.orders.filter(item => item.order_arrived == null);
-            state.pending = pending.length;
+                /**
+                 * Set the pending orders
+                 */
+                const pending = state?.orders?.filter(item => item.order_arrived == null);
+                state.pending = pending.length;
 
-            /**
-             * Set the completed orders
-             */
-            const completed = state.orders.filter(item => item.order_arrived != null);
-            state.completed = completed.length;
+                /**
+                 * Set the completed orders
+                 */
+                const completed = state?.orders?.filter(item => item.order_arrived != null);
+                state.completed = completed.length;
 
-            /**
-             * Sort the orders by date
-             */
-             state.orders.sort((a, b) => (a.order_date < b.order_date) ? 1: -1);
+                /**
+                 * Sort the orders by date
+                 */
+                state.orders.sort((a, b) => (a.order_date < b.order_date) ? 1: -1);
+           }
 
         },
         [loadOrder.pending]: (state, action) => {
