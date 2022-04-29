@@ -160,7 +160,7 @@ const ProfileAccount = (props) => {
 
                 <label
                 className="profileaccount-contact"
-                for="contactNumber">
+                htmlFor="contactNumber">
                     Contact Number:<br />
                     <input 
                     type="text" 
