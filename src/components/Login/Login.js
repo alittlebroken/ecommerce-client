@@ -8,6 +8,8 @@ import {
     selectErrorMessage,
     selectAuthenticated } from '../../slices/Auth/authSlice';
 
+import GoogleSignIn from '../GoogleSignIn/GoogleSignIn';
+
 import './Login.css';
 
 const Login = () => {
@@ -69,7 +71,7 @@ const Login = () => {
     return (
 
         <div className="loginForm-wrapper" role="presentation">
-
+            
             <form name="loginForm" method="POST" className="loginForm-container">
                 
                 <div className="login-image">
@@ -79,7 +81,6 @@ const Login = () => {
                 <div className="login-title">
                     <h2>Login</h2>
                 </div>
-
 
                 <div className="login-group">
                     <label htmlFor="Username">Username</label>
@@ -112,7 +113,9 @@ const Login = () => {
                             Register
                         </a>
                     </div>
-                    
+
+                    <GoogleSignIn />
+
                 </div>
                 { hasError ? <div className="login-error">{errorMessage}</div>: null}
             </form>

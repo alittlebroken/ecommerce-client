@@ -2,6 +2,25 @@ import axios from 'axios';
 
 export const BASE_URL = process.env.REACT_APP_API_URL;
 
+/**
+ * loginGoogleUser
+ * Logs in a google user
+ * @param {object} payload  - The data to be sent to the calling app  
+ * @returns 
+ */
+export const loginGoogleUser = async (payload) => {
+    try{
+
+        /**
+         * Pass the payload to the API
+         */
+        return await axios.post(`${BASE_URL}/auth/login/google`, payload);
+
+    } catch(err) {
+        throw new Error(err);
+    }
+};
+
 // Login a user with the API
 export const loginUser = async (credentials) => {
     try{

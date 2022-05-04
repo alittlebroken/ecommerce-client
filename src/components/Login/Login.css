@@ -86,6 +86,12 @@
     font-weight: bold;
 }
 
+.login-google {
+    display: grid;
+    width: 100%;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 650px) {
 
     .loginForm-container {

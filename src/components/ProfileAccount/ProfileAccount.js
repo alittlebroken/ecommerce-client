@@ -141,7 +141,7 @@ const ProfileAccount = (props) => {
                     <input 
                     type="text" 
                     name="firstname" 
-                    value={firstName} 
+                    value={firstName ? firstName : ''} 
                     onChange={handleChangeFirstName} 
                     required />
                 </label>
@@ -153,19 +153,19 @@ const ProfileAccount = (props) => {
                     <input 
                     type="text" 
                     name="lastname" 
-                    value={lastName} 
+                    value={lastName ? lastName : ''} 
                     onChange={handleChangeLastName} 
                     required />
                 </label>
 
                 <label
                 className="profileaccount-contact"
-                for="contactNumber">
+                htmlFor="contactNumber">
                     Contact Number:<br />
                     <input 
                     type="text" 
                     name="contactNumber" 
-                    value={contactNumber} 
+                    value={contactNumber ? contactNumber : ''} 
                     onChange={handleChangeContactNumber} />
                 </label>
 
@@ -176,7 +176,7 @@ const ProfileAccount = (props) => {
                 </button>
             </form>
 
-            <div role="presentation" class={`profileaccount-messages ${messageStyle}`} >
+            <div role="presentation" className={`profileaccount-messages ${messageStyle}`} >
                 {message ? message : null}
             </div>
 
