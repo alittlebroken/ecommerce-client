@@ -60,6 +60,8 @@
 .login-group input {
     outline: none;
     padding: 5px;
+    border-radius: 10px;
+    border: 2px solid gray;
 }
 
 .button-link {
@@ -94,14 +96,20 @@
 
 @media only screen and (max-width: 650px) {
 
+    .loginForm-wrapper {
+        justify-content: start;
+        height: auto;
+        align-items: center;
+    }
+
     .loginForm-container {
         width: 300px;
-        grid-template-areas:    "login-image login-title"
-                            "login-image login-group";
 
         grid-template-areas: "login-image"
                              "login-title"
                              "login-group";
+        grid-gap: 5px;
+        
     }
     
     .login-image img {
@@ -111,19 +119,20 @@
     .login-group {
         display: grid;
         grid-area: login-group;
-        width: 300px;
-        padding: 10px;
-        grid-gap: 10px;
+        width: 100vw;
     }
 
     .login-button-group {
         display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 10px;
+        grid-gap: 5px;
     }
 
     .login-group button, .button-link {
-        width: 100%;
+        width: calc(100vw - 20px);
+    }
+
+    .login-group > input {
+        width: calc(100vw - 20px);
     }
 
   } 
