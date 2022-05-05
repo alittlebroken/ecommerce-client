@@ -22,6 +22,7 @@ const API = axios.create({
 
     // Decode the token and extract the relevant information
     const decodedToken = jwt_decode(authToken);
+    
     const authObject = {
         auth: true,
         token: authToken,

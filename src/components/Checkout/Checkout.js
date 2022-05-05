@@ -40,7 +40,6 @@ const Checkout = () => {
      * Get the paymentURL we need to navigate to
      */
     const paymentUrl = useSelector(selectPaymentUrl);
-    console.log(`PaymentURL: ${paymentUrl}`)
 
     // Handle the decrease count click
     const updateQuantity = (product_id, amount) => {
