@@ -59,10 +59,15 @@ const App = () => {
 
   // Update the state with the cart contents for the logged in user
     useEffect(() => {
-      dispatch(loadCart({
-          cart_id: user?.cart,
-          token: token
-      }));
+      /**
+       * Only run if we have an auth token setup
+       */
+      if(user?.cart){
+        dispatch(loadCart({
+            cart_id: user?.cart,
+            token: token
+        }));
+      }
     }, [dispatch, token, user?.cart, cartUpdated]);
 
   // Handle hamburger click
