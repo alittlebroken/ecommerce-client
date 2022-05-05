@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { performGoogleLogin } from '../../slices/Auth/authSlice';
 import { useDispatch } from 'react-redux';
 
+import './googleLogin.css';
 
 const GoogleSignIn = () => {
 
@@ -63,7 +64,7 @@ const GoogleSignIn = () => {
     }, []);
 
     return (
-        <div id="googleLoginContainer" role="presentation">
+        <div id="googleLoginContainer" role="presentation" className="googleLoginContainer">
 
             <div 
             id="g_id_onload" 
@@ -77,7 +78,8 @@ const GoogleSignIn = () => {
             data-theme="outline"
             data-text="sign_in_with"
             data-shape="rectangular"
-            data-logo_alignment="left">
+            data-logo_alignment="left"
+            >
             </div>
 
 
