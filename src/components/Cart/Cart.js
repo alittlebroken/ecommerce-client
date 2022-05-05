@@ -73,7 +73,7 @@ const Cart = () => {
 
         <div role="presentation" className="cart-container">
 
-            <h3>Cart for {user.email}</h3>
+            <h3>{user.forename}'s cart</h3>
             <h5>Current cart total £{parseFloat(currentCartCost).toFixed(2)}</h5>
             
             {cartItems.map(cartItem => {
