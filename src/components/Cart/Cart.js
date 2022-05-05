@@ -21,6 +21,8 @@ const Cart = () => {
     // Get the authentication information
     const { auth, user, token } = getAuth();
 
+    console.log(user)
+
     // Alias the useDispatch hook
     const dispatch = useDispatch();
 
