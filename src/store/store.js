@@ -6,6 +6,7 @@ import authReducer from '../slices/Auth/authSlice';
 import cartReducer from '../slices/Cart/cartSlice';
 import checkoutReducer from '../slices/checkout/checkoutSlice';
 import ordersReducer from '../slices/Orders/ordersSlice';
+import messageReducer from '../slices/Messages/messagesSlice';
 
 // Create and export the store
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
         cart: cartReducer,
         checkout: checkoutReducer,
         orders: ordersReducer,
+        messages: messageReducer,
     }
 });
 
