@@ -26,6 +26,44 @@ const messageSlice = createSlice({
             state.code = action.payload;
         }
     },
+    extraReducers: {
+        /**
+         * Listen for the add to cart action successfully
+         */
+        'cart/addItemToCart/fulfilled': (state, action) => {
+            /**
+             * Extract the payload out
+             */
+            const payload = JSON.parse(action.payload)
+            
+            /**
+             * Generate a message based on the payload
+             */
+            if(payload.status === 201 && payload.statusText === 'Created'){
+                state.content = "Item added to cart";
+                state.type = "OK";
+                state.code = 201;
+            }
+        },
+        /**
+         * Listen for the item added to cart error
+         */
+        'cart/addItemToCart/rejected': (state, action) => {
+          
+            /**
+             * Extract the payload out
+             */
+             const payload = JSON.parse(action.payload)
+
+            /**
+             * Generate a message based on the payload
+             */
+            state.content = "There was an issue adding the desired item to the cart";
+            state.type = "ERROR";
+            state.code = "400";
+
+        },
+    },
 });
 
 /**
