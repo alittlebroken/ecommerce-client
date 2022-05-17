@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ProductCard.css';
 
 import { addItemToCart } from '../../slices/Cart/cartSlice';
-import userEvent from '@testing-library/user-event';
 
 import { getAuth } from '../../utils/auth';
 

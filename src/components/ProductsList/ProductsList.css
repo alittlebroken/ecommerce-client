@@ -24,6 +24,34 @@
     font-weight: bold;
 }
 
+.messages {
+    display: grid;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.message-ok {
+    border: 3px solid green;
+    color: green;
+    background-color: rgba(111, 217, 111, 0.433);
+}
+
+.message-warn {
+    border: 3px solid yellow;
+    color: yellow;
+    background-color: rgba(217, 215, 111, 0.433);
+}
+
+.message-error {
+    border: 3px solid red;
+    color: red;
+    background-color: rgba(208, 113, 113, 0.433)
+}
+
 @media only screen and (max-width: 650px) {
     .products-precontainer {
         width: 100vw;

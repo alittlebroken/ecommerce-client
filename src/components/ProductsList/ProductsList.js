@@ -10,6 +10,8 @@ import {
     selectSearchTerms
   } from '../../slices/Search/searchSlice';
 
+import Messages from '../Messages/Messages';
+
 const ProductsList = () => {
 
     // Alias the dispatch hook
@@ -49,6 +51,8 @@ const ProductsList = () => {
                 })}
 
             </div>
+
+            <Messages />
 
         </div>
         </div>

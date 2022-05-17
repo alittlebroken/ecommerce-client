@@ -1,0 +1,30 @@
+
+.message-card {
+   display: grid;
+   padding: 15px;
+   margin: 5px;
+}
+
+.ok {
+    /* Styling */
+    border: 3px solid green;
+    background-color: rgba(0, 128, 0, 0.555);
+    color: green;
+    font-weight: bold;
+}
+
+.error {
+    /* Styling */
+    border: 3px solid red;
+    background-color: rgba(128, 0, 0, 0.555);
+    color: red;
+    font-weight: bold;
+}
+
+.warn {
+    /* Styling */
+    border: 3px solid yellow;
+    background-color: rgba(128, 115, 0, 0.555);
+    color: yellow;
+    font-weight: bold;
+}

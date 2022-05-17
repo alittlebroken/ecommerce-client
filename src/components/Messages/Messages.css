@@ -1,0 +1,13 @@
+.message-container {
+    /* Size and Positioning */
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    padding: 15px;
+    margin: 5px;
+
+    /* Styling */
+    border-radius: 15px;
+
+}
