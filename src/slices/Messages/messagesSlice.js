@@ -54,6 +54,7 @@ const messageSlice = createSlice({
                     content: 'Item has been added to the cart',
                     type: 'OK',
                     code: 201,
+                    style: 'ok'
                 })
 
                 state.content = "Item added to cart";
@@ -80,6 +81,7 @@ const messageSlice = createSlice({
                 content: 'Unable to add item to the cart',
                 type: 'ERROR',
                 code: 400,
+                style: 'error'
             })
 
             state.content = "There was an issue adding the desired item to the cart";
