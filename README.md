@@ -86,6 +86,17 @@ npm start
 
 After a short time the site will load in your default Browser
 
+## Planned Features
+
+The following features will be added further down the line and I plan on expanding further
+
+- Admin management
+- Email notifications
+- Refunding Orders
+- Persist payment methods for customers
+
+This [Trello](https://trello.com/b/FhHvHtIn/beehive-eccomerce-store) board lists the current features and bugs being worked on and covers both the front and back end
+
 ## Authors
 
 Paul Lockyer
